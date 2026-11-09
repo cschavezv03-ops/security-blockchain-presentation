@@ -1,0 +1,40 @@
+[project]
+name = "security-blockchain-presentation"
+version = "0.1.0"
+description = "Animaciones Manim de seguridad en blockchain para Tecnologías de Seguridad, EPN"
+requires-python = ">=3.13"
+dependencies = [
+    "imageio-ffmpeg>=0.8.1",
+    "manim>=0.21",
+]
+
+[dependency-groups]
+lint = ["ruff>=0.17.4", "ty>=0.0.99"]
+test = ["pytest>=9.2"]
+presentation = ["python-pptx>=1.0.2"]
+
+[tool.uv]
+default-groups = ["lint", "test", "presentation"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D", "COM812", "CPY001", "RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR2004"]
+"src/ledger_viz/scenes/**" = ["PLR2004", "PLR0915"]
+"src/ledger_viz/viz/**" = ["PLR2004"]
+
+[tool.ruff.lint.pylint]
+max-args = 7
+
+[tool.ty.environment]
+python-version = "3.13"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
